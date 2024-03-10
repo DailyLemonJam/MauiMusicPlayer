@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMusicPlayer.Views.EditorView">
+
+    <ScrollView>
+        <Grid RowDefinitions="50, *">
+        
+        <HorizontalStackLayout Grid.Row="0">
+            <Label Text="Metadata" FontAttributes="Bold" Margin="20,0,20,0" FontSize="Large"
+                   VerticalOptions="Center"/>
+            <Button Text="Select file" Command="{Binding SelectFileCommand}" FontSize="Medium"/>
+            <Button Text="Save changes" Command="{Binding SaveChangesCommand}" FontSize="Medium" Margin="20,0,0,0"/>
+            <Button Text="Close file" Command="{Binding CloseAndClearWithoutChangingCommand}" FontSize="Medium" Margin="20,0,0,0"/>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1" RowDefinitions="80,80,80,80,80,110,110" ColumnDefinitions="150,0.4*,150,0.4*">
+            <Label Grid.Row="0" Grid.Column="0" Text="Title:" VerticalOptions="Center" FontSize="Medium" Margin="20,20,0,0"/>
+            <Entry Grid.Row="0" Grid.Column="1" Text="{Binding Title}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="0" Grid.Column="2" Text="Subtitile:" VerticalOptions="Center" FontSize="Medium" Margin="0,20,0,0"/>
+            <Entry Grid.Row="0" Grid.Column="3" Text="{Binding Subtitle}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="1" Grid.Column="0" Text="Album artists:" VerticalOptions="Center" FontSize="Medium" Margin="20,20,0,0"/>
+            <Entry Grid.Row="1" Grid.Column="1" Text="{Binding AlbumArtists}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="1" Grid.Column="2" Text="Album:" VerticalOptions="Center" FontSize="Medium" Margin="0,20,0,0"/>
+            <Entry Grid.Row="1" Grid.Column="3" Text="{Binding Album}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="2" Grid.Column="0" Text="Comment:" VerticalOptions="Center" FontSize="Medium" Margin="20,20,0,0"/>
+            <Entry Grid.Row="2" Grid.Column="1" Text="{Binding Comment}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="2" Grid.Column="2" Text="Performers:" VerticalOptions="Center" FontSize="Medium" Margin="0,20,0,0"/>
+            <Entry Grid.Row="2" Grid.Column="3" Text="{Binding Performers}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="3" Grid.Column="0" Text="Conductor:" VerticalOptions="Center" FontSize="Medium" Margin="20,20,0,0"/>
+            <Entry Grid.Row="3" Grid.Column="1" Text="{Binding Conductor}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="3" Grid.Column="2" Text="Composers:" VerticalOptions="Center" FontSize="Medium" Margin="0,20,0,0"/>
+            <Entry Grid.Row="3" Grid.Column="3" Text="{Binding Composers}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="4" Grid.Column="0" Text="Genres:" VerticalOptions="Center" FontSize="Medium" Margin="20,20,0,0"/>
+            <Entry Grid.Row="4" Grid.Column="1" Text="{Binding Genres}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Label Grid.Row="4" Grid.Column="2" Text="Year:" VerticalOptions="Center" FontSize="Medium" Margin="0,20,0,0"/>
+            <Entry x:Name="yearField" TextChanged="YearValidation" Grid.Row="4" Grid.Column="3" Keyboard="Numeric" MaxLength="8" Text="{Binding Year}" Margin="0,20,20,0" BackgroundColor="WhiteSmoke"/>
+
+            <Frame Grid.Row="5" Grid.ColumnSpan="4" Margin="20" BackgroundColor="WhiteSmoke">
+                <HorizontalStackLayout>
+                    <Label Text="Currently opened file: " Margin="0,0,10,0" FontSize="Medium" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                    <Label Text="{Binding PathToCurrentFile}" FontSize="Medium" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Grid.Row="6" Grid.ColumnSpan="4" Margin="20" BackgroundColor="WhiteSmoke">
+                <Label Text="Use semicolons (;) between values in Performers, Album artists, Composers and Genres fields for proper work."
+                       FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
+            </Frame>
+
+            </Grid>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

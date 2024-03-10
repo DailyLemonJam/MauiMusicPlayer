@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMusicPlayer.Views.LibraryView"
+             
+             xmlns:viewmodels="clr-namespace:MauiMusicPlayer.ViewModels"
+             xmlns:models="clr-namespace:MauiMusicPlayer.Models">
+
+    <Grid RowDefinitions="50,50,*,120">
+
+        <HorizontalStackLayout Grid.Row="0" Spacing="20">
+            <Label Text="Music" FontAttributes="Bold" FontSize="Large" Margin="20,0,0,0"/>
+            <Button Text="Add folder" FontSize="Medium" Command="{Binding AddFolderCommand}"/>
+            <ImageButton BackgroundColor="White" Source="refresh_icon.png" CornerRadius="5"
+                         BorderWidth="3" BorderColor="#512BD4" Padding="5"
+                         Command="{Binding RefreshLibraryCommand}"/>
+        </HorizontalStackLayout>
+
+        <Grid Grid.Row="1" ColumnDefinitions="1.2*,0.7*,150" Margin="20,10,20,0"
+              BackgroundColor="WhiteSmoke">
+            <Label Grid.Column="0" Text="Title / Performers" 
+                   VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Label Grid.Column="1" Text="Album" 
+                   VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Label Grid.Column="2" Text="Duration"
+                   VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+        </Grid>
+        
+        <CollectionView x:Name="libraryAudioCV" ItemsSource="{Binding LibraryAudios}" Grid.Row="2" Margin="15,10,15,10"
+                        SelectionMode="Single" 
+                        SelectionChangedCommand="{Binding SelectNewAudioCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference Name=libraryAudioCV}, Path=SelectedItem}">
+            
+            <CollectionView.EmptyView>
+                <Label Text="Library is currently empty." FontSize="Medium"/>
+            </CollectionView.EmptyView>
+            
+                <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Audio">
+
+                    <Grid ColumnDefinitions="1.2*,0.7*,150" RowDefinitions="50,40">
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" VerticalOptions="Center" 
+                               Margin="15,0,0,0" LineBreakMode="TailTruncation" FontSize="Medium" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Performers}" VerticalOptions="Start" 
+                               Margin="15,0,0,0" LineBreakMode="TailTruncation" FontSize="Micro" />
+                        <Label Grid.RowSpan="2" Grid.Column="1" Text="{Binding Album}" VerticalOptions="Center"
+                               Margin="15,0,15,0" LineBreakMode="TailTruncation" FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                        <Label Grid.RowSpan="2" Grid.Column="2" Text="{Binding RoundedDuration}" VerticalOptions="Center"
+                               Margin="0,0,15,0" LineBreakMode="TailTruncation" FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+                    
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            
+        </CollectionView>
+        
+        <!--Audio controller-->
+        <Grid Grid.Row="3" BackgroundColor="WhiteSmoke" RowDefinitions="30, 45, 45" 
+              ColumnDefinitions="100, 0.2*, 70, 70, 70, 100, 200, 100">
+            <Label x:Name="CurrentTime" Grid.Row="0" Grid.Column="0" Text="00:00:00" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label x:Name="TotalTime" Grid.Row="0" Grid.Column="7" Text="00:00:00" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Slider x:Name="TimeSlider" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="6" VerticalOptions="Center"
+                    Minimum="0.0" Maximum="1.0" />
+
+            <Label x:Name="CurrentTitle" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" FontAttributes="Bold" 
+                   FontSize="Medium" VerticalOptions="Center" Margin="10,0,0,0" LineBreakMode="TailTruncation" />
+            <Label x:Name="CurrentPerformers" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" VerticalOptions="Center" Margin="10,-5,0,0" 
+                   LineBreakMode="TailTruncation" FontSize="Micro" />
+            <ImageButton x:Name="PreviousButton" Source="backward_icon.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="2" 
+                         BackgroundColor="WhiteSmoke" Scale="0.35" />
+            <ImageButton x:Name="PlayButton" Source="play_icon.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="3" 
+                         BackgroundColor="WhiteSmoke" Scale="0.8" />
+            <ImageButton x:Name="NextButton" Source="forward_icon.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="4" 
+                         BackgroundColor="WhiteSmoke" Scale="0.35" />
+            <ImageButton x:Name="RepeatButton" Source="repeat_icon.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" 
+                         BackgroundColor="WhiteSmoke" Scale="0.45"
+                         CornerRadius="5" BorderWidth="3" Padding="10" />
+            <Slider x:Name="VolumeSlider" Grid.Row="1" Grid.RowSpan="2" Grid.Column="6" Grid.ColumnSpan="2" VerticalOptions="Center" 
+                         Margin="10,0,25,0" Minimum="0.0" Maximum="1.0" Value="0.2" />
+            <ImageButton x:Name="SettingsButton" Source="panel_settings_icon.png" Grid.Row="1" Grid.RowSpan="2" Grid.Column="7" 
+                         BackgroundColor="WhiteSmoke" Scale="0.3" IsVisible="False" />
+
+        </Grid>
+        
+    </Grid>
+    
+</ContentPage>

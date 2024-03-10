@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMusicPlayer.Views.HomeView"
+             
+             xmlns:audiotoolkit = "http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+
+    <ScrollView>
+        <Grid RowDefinitions="120,120,120,120,120" HorizontalOptions="Center">
+
+            <Frame Grid.Row="0" Margin="30,30,30,0" BackgroundColor="WhiteSmoke">
+                <HorizontalStackLayout>
+                    <Image Source="home_icon.png" WidthRequest="50" HeightRequest="50" />
+                    <Label Text="Home. Contains description about other pages." 
+                           VerticalOptions="Center" Margin="20,0,0,0" FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Grid.Row="1" Margin="30,30,30,0">
+                <HorizontalStackLayout>
+                    <Image Source="music_icon.png" WidthRequest="50" HeightRequest="50" />
+                    <Label Text="Library. Audio controller and music library." 
+                           VerticalOptions="Center" Margin="20,0,0,0" FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Grid.Row="2" Margin="30,30,30,0" BackgroundColor="WhiteSmoke">
+                <HorizontalStackLayout>
+                    <Image Source="playlist_icon.png" WidthRequest="50" HeightRequest="50" />
+                    <Label Text="Playlists. Menu to create custom playlists." 
+                           VerticalOptions="Center" Margin="20,0,0,0" FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Grid.Row="3" Margin="30,30,30,0">
+                <HorizontalStackLayout>
+                    <Image Source="tools_icon.png" WidthRequest="50" HeightRequest="50" />
+                    <Label Text="Editor. Edit audio metadata." 
+                           VerticalOptions="Center" Margin="20,0,0,0" FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <Frame Grid.Row="4" Margin="30,30,30,0" BackgroundColor="WhiteSmoke">
+                <HorizontalStackLayout>
+                    <Image Source="settings_icon.png" WidthRequest="50" HeightRequest="50" />
+                    <Label Text="Settings. Different application settings." 
+                           VerticalOptions="Center" Margin="20,0,0,0" FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </Frame>
+
+            <!--Main Audio Element for the entire Application-->
+            <audiotoolkit:MediaElement x:Name="MainAudioElement" IsVisible="false"/>
+        </Grid>
+        
+    </ScrollView>
+
+</ContentPage>

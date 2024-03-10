@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMusicPlayer.Views.SettingsView">
+
+    <ScrollView>
+        <Grid RowDefinitions="60,auto,100,100">
+            <Label Text="Settings" FontAttributes="Bold" Grid.Row="0" Grid.Column="0" FontSize="Large" 
+           Margin="20,10,10,0"/>
+
+            <VerticalStackLayout Grid.Row="2">
+                <Label Text="Factory reset" FontAttributes="Bold" FontSize="Medium" Margin="20,10,20,0"
+               Background="WhiteSmoke"/>
+
+                <HorizontalStackLayout>
+                    <Button Text="Reset" FontSize="Small" WidthRequest="100" HorizontalOptions="Start" 
+                            Margin="20,10,0,0" Command="{Binding ResetCommand}"/>
+                    <Label Text="Deletes all playlists and libraries." FontSize="Small" Margin="20,10,0,0" 
+                   VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Row="3">
+                <Label Text="Info" FontAttributes="Bold" FontSize="Medium" Margin="20,10,20,0"
+               Background="WhiteSmoke"/>
+
+                <HorizontalStackLayout>
+                    <Label Text="Main Editor features:" Margin="20,5,5,0" FontSize="Small"/>
+                    <Label Text="TagLib" TextDecorations="Underline" TextColor="Blue" 
+                   SemanticProperties.HeadingLevel="Level1" FontSize="Small"
+                   Margin="0,5,0,0">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding OpenTagLibGitHubCommand}"/>
+                        </Label.GestureRecognizers>
+                    </Label>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+        </Grid>
+    </ScrollView>
+
+</ContentPage>

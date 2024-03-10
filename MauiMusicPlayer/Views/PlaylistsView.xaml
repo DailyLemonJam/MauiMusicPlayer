@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiMusicPlayer.Views.PlaylistsView"
+             
+             xmlns:viewmodels="clr-namespace:MauiMusicPlayer.ViewModels"
+             xmlns:models="clr-namespace:MauiMusicPlayer.Models">
+
+    <Grid RowDefinitions="50,100,50,*">
+
+        <HorizontalStackLayout Grid.Row="0">
+            <Label Text="Playlists" FontAttributes="Bold" FontSize="Large" Margin="20,0,10,0"/>
+            <Button Text="Create" FontSize="Medium" Command="{Binding CreatePlaylistCommand}"
+                    Margin="8,0,10,0"/>
+            <Button Text="Rename" FontSize="Medium" Command="{Binding RenamePlaylistCommand}"
+                    Margin="8,0,10,0"/>
+            <Button Text="Delete" FontSize="Medium" Command="{Binding DeletePlaylistCommand}"
+                    Margin="8,0,10,0"/>
+            <Button Text="Add audio" FontSize="Medium" Command="{Binding AddAudioToSelectedPlaylistCommand}"
+                    Margin="8,0,10,0"/>
+        </HorizontalStackLayout>
+        
+        <!--All Playlists-->
+        <CollectionView x:Name="allPlaylistsCV" ItemsSource="{Binding Playlists}" Grid.Row="1" Margin="20,20,20,0"
+                        SelectionMode="Single" ItemsLayout="HorizontalList" BackgroundColor="WhiteSmoke"
+                        SelectionChangedCommand="{Binding SelectPlaylistCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference Name=allPlaylistsCV}, Path=SelectedItem}">
+
+            <CollectionView.EmptyView>
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <Label Text="No playlists were found." FontSize="Medium"/>
+                </HorizontalStackLayout>
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Playlist">
+                    <Grid ColumnDefinitions="150">
+                        <Label Grid.Column="0" Text="{Binding Name}" LineBreakMode="TailTruncation"
+                               VerticalOptions="Center" FontSize="Small" Margin="10,0,10,0" 
+                               HorizontalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Grid Grid.Row="2" ColumnDefinitions="1.2*,0.7*,150" Margin="20,10,20,0"
+              BackgroundColor="WhiteSmoke">
+            <Label Grid.Column="0" Text="Title / Performers" 
+           VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Label Grid.Column="1" Text="Album" 
+           VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+            <Label Grid.Column="2" Text="Duration"
+           VerticalOptions="Center" HorizontalOptions="Center" FontSize="Medium"/>
+        </Grid>
+
+        <!--Current Playlist-->
+        <CollectionView x:Name="PlaylistCollectionView" ItemsSource="{Binding CurrentPlaylistAudios}" Grid.Row="3" 
+                        Margin="15,10,5,0" SelectionMode="Single"
+                        SelectionChangedCommand="{Binding SelectAudioInPlaylistCommand}"
+                        SelectionChangedCommandParameter="{Binding Source={x:Reference Name=PlaylistCollectionView}, Path=SelectedItem}">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Audio">
+                    <Grid ColumnDefinitions="1.2*,0.7*,150" RowDefinitions="50,40">
+                        <Label Grid.Row="0" Grid.Column="0" Text="{Binding Title}" VerticalOptions="Center" 
+                               Margin="15,0,0,0" LineBreakMode="TailTruncation" FontSize="Medium" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="{Binding Performers}" VerticalOptions="Start" 
+                               Margin="15,0,0,0" LineBreakMode="TailTruncation" FontSize="Micro" />
+                        <Label Grid.RowSpan="2" Grid.Column="1" Text="{Binding Album}" VerticalOptions="Center"
+                               HorizontalOptions="Center"/>
+                        <Label Grid.RowSpan="2" Grid.Column="2" Text="{Binding RoundedDuration}" VerticalOptions="Center"
+                               Margin="0,0,15,0" LineBreakMode="TailTruncation" FontSize="Medium"
+                               HorizontalOptions="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
