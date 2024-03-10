@@ -15,4 +15,4 @@ Main features currently work on Windows only.
 ## Other
 * MVVM pattern (by using CommunityTookit.Mvvm)
 * [MAUI Dependency Injection](https://learn.microsoft.com/en-us/dotnet/architecture/maui/dependency-injection)
-* JSON Manager & Repository services
+* 
