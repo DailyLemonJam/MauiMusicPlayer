@@ -5,9 +5,11 @@ internal static class Helper
     public static readonly int AppMinWidth = 970; // Shell width + LibraryView width
     public static readonly int AppMinHeight = 250;
 
+    // TODO Default picker options for other devices
     public static readonly FilePickerFileType DefaultWinUIFileTypes = new(
         new Dictionary<DevicePlatform, IEnumerable<string>>
         {
+            // TODO Add more extensions (that are supported by TagLib)
             { DevicePlatform.WinUI, new[] { ".mp3", ".wav" } },
         });
 

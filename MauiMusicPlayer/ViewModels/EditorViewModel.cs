@@ -9,7 +9,6 @@ public partial class EditorViewModel : ObservableObject
         _messageService = messageService;
     }
 
-    //////////////// Related values ////////////////
     private TagLib.File? CurrentTagLibFile { get; set; }
 
     [ObservableProperty] private string pathToCurrentFile = "none";

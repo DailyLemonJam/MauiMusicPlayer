@@ -57,7 +57,7 @@
                        FontSize="Small" HorizontalOptions="Start" VerticalOptions="Center" LineBreakMode="TailTruncation"/>
             </Frame>
 
-            </Grid>
+        </Grid>
 
         </Grid>
     </ScrollView>
